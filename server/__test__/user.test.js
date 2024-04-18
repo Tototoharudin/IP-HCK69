@@ -79,6 +79,21 @@ describe("POST /register", () => {
     expect(res.body).toBeInstanceOf(Object);
     expect(res.body).toHaveProperty("message", "Email Can't be empty");
   });
+  //Password diberikan string kosong
+  test("throw error password empty", async () => {
+    const dataDummy = {
+      username: "user1",
+      email: "user1@mail.com",
+      password: "",
+      status: "Free",
+    };
+
+    const res = await request(app).post("/register").send(dataDummy);
+
+    expect(res.status).toBe(400);
+    expect(res.body).toBeInstanceOf(Object);
+    expect(res.body).toHaveProperty("message", "Password Can't be empty");
+  });
   //
   afterAll(async () => {
     try {
