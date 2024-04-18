@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.25% </span>
+                <span class="strong">15.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/32</span>
+                <span class='fraction'>5/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">6.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>1/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.25% </span>
+                <span class="strong">15.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/32</span>
+                <span class='fraction'>5/32</span>
             </div>
         
             
@@ -118,10 +118,10 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -171,53 +171,53 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const errHandler = <span class="fstat-no" title="function not covered" >(e</span>rr, req, res, next) =&gt; {
-<span class="cstat-no" title="statement not covered" >  switch (err.name) {</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const errHandler = (err, req, res, next) =&gt; {
+  switch (err.name) {
     case "SequelizeValidationError":
-<span class="cstat-no" title="statement not covered" >      res.status(400).json({ message: err.errors[0].message });</span>
-<span class="cstat-no" title="statement not covered" >      break;</span>
-    case "SequelizeUniqueConstraintError":
+      res.status(400).json({ message: err.errors[0].message });
+      break;
+<span class="branch-1 cbranch-no" title="branch not covered" >    case "SequelizeUniqueConstraintError":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(400).json({ message: "Email Already Registered" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "AnimeAdded":
+<span class="branch-2 cbranch-no" title="branch not covered" >    case "AnimeAdded":</span>
 <span class="cstat-no" title="statement not covered" >      res</span>
         .status(400)
         .json({ message: "This Anime Have Been Added to Your Favorite" });
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "StatusFix":
+<span class="branch-3 cbranch-no" title="branch not covered" >    case "StatusFix":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(400).json({ message: "You Have Completed This Anime" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "EmailRequired":
+<span class="branch-4 cbranch-no" title="branch not covered" >    case "EmailRequired":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(400).json({ message: "Email is required" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "PassRequired":
+<span class="branch-5 cbranch-no" title="branch not covered" >    case "PassRequired":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(400).json({ message: "Password is required" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "InvalidLogin":
+<span class="branch-6 cbranch-no" title="branch not covered" >    case "InvalidLogin":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(401).json({ message: "Invalid Email/Password" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "NotFound":
+<span class="branch-7 cbranch-no" title="branch not covered" >    case "NotFound":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(404).json({ message: "Error Data Not Found" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "OrderNotFound":
+<span class="branch-8 cbranch-no" title="branch not covered" >    case "OrderNotFound":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(404).json({ message: "Error Order Not Found" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "NotFoundId":
+<span class="branch-9 cbranch-no" title="branch not covered" >    case "NotFoundId":</span>
 <span class="cstat-no" title="statement not covered" >      res</span>
         .status(404)
         .json({ message: `Favorite with id ${err.animeId} not found` });
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "InvalidToken":
-    case "JsonWebTokenError":
+<span class="branch-10 cbranch-no" title="branch not covered" >    case "InvalidToken":</span>
+<span class="branch-11 cbranch-no" title="branch not covered" >    case "JsonWebTokenError":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(401).json({ message: "Invalid Token" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "Forbidden":
+<span class="branch-12 cbranch-no" title="branch not covered" >    case "Forbidden":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(403).json({ message: "Forbidden Access" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    case "ForbiddenStatus":
+<span class="branch-13 cbranch-no" title="branch not covered" >    case "ForbiddenStatus":</span>
 <span class="cstat-no" title="statement not covered" >      res.status(403).json({ message: "You Must Upgrade Premium" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
-    default:
+<span class="branch-14 cbranch-no" title="branch not covered" >    default:</span>
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
 <span class="cstat-no" title="statement not covered" >      res.status(500).json({ message: "Internal Server Error" });</span>
 <span class="cstat-no" title="statement not covered" >      break;</span>
@@ -232,7 +232,7 @@ module.exports = { errHandler };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-18T14:00:35.545Z
+                at 2024-04-18T14:14:42.923Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
