@@ -106,10 +106,26 @@ describe("POST /register", () => {
 
     const res = await request(app).post("/register").send(dataDummy);
 
-    expect(res.status).toBe(400);
+    expect(res.status).toBe(201);
     expect(res.body).toBeInstanceOf(Object);
     expect(res.body).toHaveProperty("message", "Email has been registered");
   });
+
+  test("throw email is not format email", async () => {
+    const dataDummy = {
+      username: "user1",
+      email: "user1il.com",
+      password: "user1",
+      status: "Free",
+    };
+
+    const res = await request(app).post("/register").send(dataDummy);
+
+    expect(res.status).toBe(400);
+    expect(res.body).toBeInstanceOf(Object);
+    expect(res.body).toHaveProperty("message", "Email Must Be Email Format");
+  });
+
   //
   afterAll(async () => {
     try {

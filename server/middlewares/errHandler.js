@@ -20,9 +20,9 @@ const errHandler = (err, req, res, next) => {
     case "PassRequired":
       res.status(400).json({ message: "Password is required" });
       break;
-    // case "EmailRequired":
-    //   res.status(400).json({ message: "Email has been registered" });
-    //   break;
+    case "SequelizeUniqueConstraintError":
+      res.status(201).json({ message: "Email has been registered" });
+      break;
     case "InvalidLogin":
       res.status(401).json({ message: "Invalid Email/Password" });
       break;
