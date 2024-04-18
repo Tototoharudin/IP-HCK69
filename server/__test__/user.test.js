@@ -140,7 +140,21 @@ describe("POST /register", () => {
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("message", "Success Login");
     });
+    //Email tidak diberikan / tidak diinput
+    test("throw error email null", async () => {
+      const dataDummy = {
+        password: "user1",
+      };
+
+      const res = await request(app).post("/login").send(dataDummy);
+
+      expect(res.status).toBe(400);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("message", "Email is required");
+    });
+    //
   });
+
   //
   afterAll(async () => {
     try {
