@@ -96,7 +96,6 @@ function LoginPage() {
       theme: "outline",
       size: "large",
     });
-    // google.accounts.id.prompt(); // also display the One Tap dialog
   }, []);
 
   return (

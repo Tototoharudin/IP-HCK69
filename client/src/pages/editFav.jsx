@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import Swal from "sweetalert2";
-// import BASE_URL from "../constant";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";

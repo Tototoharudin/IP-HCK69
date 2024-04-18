@@ -42,7 +42,7 @@ function DetailPage() {
   useEffect(() => {
     dispatch(fetchDetail(id));
     // fetchDetail()
-  }, [dispatch, id]);
+  }, [id]);
 
   return (
     <>

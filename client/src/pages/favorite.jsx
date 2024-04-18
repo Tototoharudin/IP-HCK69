@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
