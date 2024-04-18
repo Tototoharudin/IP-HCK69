@@ -14,7 +14,7 @@ route.post("/google-login", ControllerAuth.googleLogin);
 route.get("/anime", Controller.getAnime);
 
 route.use(authentication);
-
+// route.post("email", Controller.getUserByEmail);
 route.get("/anime/:id", Controller.getAnimeById);
 
 route.get("/payment", Controller.paymentMidtrans);

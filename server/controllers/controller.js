@@ -2,7 +2,7 @@ const { User, Favorite, Anime, Score, Order } = require("../models/index");
 const midtransClient = require("midtrans-client");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 
 class Controller {
   static async getAnime(req, res, next) {
@@ -19,7 +19,7 @@ class Controller {
       }
 
       // console.log(req.query, "<<<");
-      let limit = 10;
+      let limit = 6;
       let pageNumber = 1;
       if (page) {
         if (page.size) {
@@ -205,7 +205,7 @@ class Controller {
       });
 
       let OrderId = Math.random().toString();
-      let amount = 100_000;
+      let amount = 200_000;
 
       let parameter = {
         transaction_details: {
@@ -248,6 +248,7 @@ class Controller {
         pass: "Namira0500",
       },
     });
+    console.log("KKKKK<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
     try {
       const { OrderId } = req.body;
@@ -278,8 +279,11 @@ class Controller {
           },
         }
       );
-      console.log(base64ServerKey, "<<< MIDTRANS");
-      if (data.transaction_status === "capture" && data.status_code === "200") {
+      console.log(data, "<<< MIDTRANS");
+      if (
+        data.transaction_status === "settlement" &&
+        data.status_code === "200"
+      ) {
         await req.user.update({ status: "Premium" });
         await order.update({ status: "Paid", paidDate: new Date() });
 
@@ -288,12 +292,16 @@ class Controller {
             from: "tohatoto052@gmail.com",
             to: req.user.email,
             subject: "Payment Notification",
-            text: `Dear ${req.user.username},\n\nYour payment has been successfully processed. Thank you for your purchase!\n\nEnjoy Your Premium HackNime Account !! 🤩😘😍`,
+            text: `Dear ${req.user.username},\n\nYour payment has been successfully processed. Thank you for your purchase!\n\nEnjoy Your Premium Wibulovers Account !! 🤩😘😍`,
           });
           console.log("Message sent: %s", mailOptions.messageId);
         }
 
         main().catch(console.error);
+
+        console.log(
+          "<<<<<<<<<<<<<<<<<<<<<<<<<<SUCESSSSSSSSSSSSSSSSSSSSS<<<<<<<<<<<<<<<<<<"
+        );
 
         res.status(200).json({ message: "Upgrade Success" });
       } else {
@@ -306,6 +314,20 @@ class Controller {
       next(error);
     }
   }
+
+  // static async getUserByEmail(req, res, next) {
+  //   try {
+  //     const getUser = await User.findOne({
+  //       where: {
+  //         email: req.body.email,
+  //       },
+  //     });
+  //     return res.status(200).json(getUser);
+  //   } catch (error) {
+  //     console.log(error);
+  //     next(error);
+  //   }
+  // }
 }
 
 module.exports = Controller;
