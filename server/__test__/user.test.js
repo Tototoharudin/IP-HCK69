@@ -164,6 +164,33 @@ describe("POST /register", () => {
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("message", "Password is required");
     });
+    //Email diberikan invalid / tidak terdaftar
+    test("throw error invalid email", async () => {
+      const dataDummy = {
+        email: "user1",
+        password: "user1",
+      };
+
+      const res = await request(app).post("/login").send(dataDummy);
+
+      expect(res.status).toBe(401);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("message", "Invalid Email/Password");
+    });
+
+    //Password diberikan salah / tidak match
+    test("throw error invalid password", async () => {
+      const dataDummy = {
+        email: "user1@mail.com",
+        password: "user12324",
+      };
+
+      const res = await request(app).post("/login").send(dataDummy);
+
+      expect(res.status).toBe(401);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("message", "Invalid Email/Password");
+    });
     //
   });
 
