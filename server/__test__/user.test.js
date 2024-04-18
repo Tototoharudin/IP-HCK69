@@ -126,6 +126,21 @@ describe("POST /register", () => {
     expect(res.body).toHaveProperty("message", "Email Must Be Email Format");
   });
 
+  describe("POST /login", () => {
+    //Berhasil login
+    test("success login", async () => {
+      const dataDummy = {
+        email: "user1@mail.com",
+        password: "user1",
+      };
+
+      const res = await request(app).post("/login").send(dataDummy);
+
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("message", "Success Login");
+    });
+  });
   //
   afterAll(async () => {
     try {
